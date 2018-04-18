@@ -15,9 +15,11 @@
 //webview缓存
 #import "YMWebCacheProtocol.h"
 
+#import "LGWebView.h"
+
 @interface RootWKWebViewViewController ()<WKUIDelegate,WKNavigationDelegate,WKJSDelegate>
 //加载webview
-@property (nonatomic,strong) WKWebView *wkwebview;
+@property (nonatomic,strong) LGWebView *wkwebview;
 //js交互对象
 @property (nonatomic,strong) WKUserContentController* userContentController;
 // 设置加载进度条
@@ -37,10 +39,14 @@
     
     {
         //初始化webview
-        WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc]init];
+//        WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc]init];
         _userContentController =[[WKUserContentController alloc]init];
-        config.userContentController = _userContentController;
-        _wkwebview = [[WKWebView alloc]initWithFrame:self.view.bounds configuration:config];
+//        config.userContentController = _userContentController;
+        _wkwebview = [LGWebView sharedInstance];
+        _wkwebview.frame = self.view.bounds;
+        _wkwebview.configuration.userContentController = _userContentController;
+        NSLog(@"config%@",_wkwebview.configuration);
+        
         [self.view addSubview:_wkwebview];
         _wkwebview.UIDelegate = self;
         _wkwebview.navigationDelegate = self;

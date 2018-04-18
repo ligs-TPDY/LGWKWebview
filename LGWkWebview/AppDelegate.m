@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 
+#import "LGWebView.h"
+
 @interface AppDelegate ()
 
 @end
@@ -17,6 +19,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    LGWebView *webview = [LGWebView sharedInstance];
+    NSLog(@"%@",webview);
+    
     return YES;
 }
 
