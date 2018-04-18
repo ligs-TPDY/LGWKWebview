@@ -10,7 +10,17 @@
 
 @interface YMWebCacheProtocol : NSURLProtocol
 
+
+/**
+    注册子类，开始截取请求并缓存
+ */
 + (void)start;
+
+/**
+    移除子类，停止截取请求
+    并没有清除之前的缓存数据
+ */
++ (void)end;
 
 /**
  *  @author 俞明, 16-10-24 10:10:10

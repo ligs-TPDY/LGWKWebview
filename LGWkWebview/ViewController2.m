@@ -23,40 +23,48 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    [YMWebCacheProtocol start];
-    
+    NSArray *arr = @[@"https://www.jianshu.com",
+                     @"https://github.com",
+                     @"https://www.baidu.com",
+                     @"https://www.csdn.net"];
+    for (int i = 0; i < arr.count; i++) {
+        NSString *str = arr[i];
+        
+        UIButton* button =[UIButton buttonWithType:UIButtonTypeCustom];
+        [button setTitle:str forState:UIControlStateNormal];
+        
+        button.frame = CGRectMake(10, 100 * (i + 1), 300, 50);
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+        [button addTarget:self action:@selector(click:) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:button];
+        button.tag = i;
+    }
 }
-- (void)viewDidAppear:(BOOL)animated
+- (void)click:(UIButton *)button
 {
-    [super viewDidAppear:YES];
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    //申明返回的结果是json类型
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-
-    NSMutableDictionary *dicForPar = [[NSMutableDictionary alloc] initWithDictionary:@{@"fileFullPath":@"tgw/chat/image/25h58pic3eg_114.jpg",@"cover":@1}];
-
-    [manager POST:@"http://172.18.44.128:8051/upload/file" parameters:dicForPar constructingBodyWithBlock:^(id<AFMultipartFormData> formData){
-
-        UIImage *img = [UIImage imageNamed:@"qwe.png"];
-        NSData *data = UIImageJPEGRepresentation(img, 1.0);
-
-        [formData appendPartWithFileData:data
-                                    name:@"file"
-                                fileName:@"test.jpg"
-                                mimeType:@"application/octet-stream"];
-
-    }success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"%@",error);
-    }];
-    
-    
-//    [self.navigationController pushViewController:[[RootWKWebViewViewController alloc]init] animated:YES];
-    
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"123" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
+    if (button.tag == 0) {
+        [self testAFN_NSURLProtocol];
+    }else{
+        RootWKWebViewViewController *webview = [[RootWKWebViewViewController alloc]init];
+        webview.strForUrl = button.titleLabel.text;
+        [self.navigationController pushViewController:webview animated:YES];
+    }
 }
+
+- (void)testAFN_NSURLProtocol
+{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    [manager GET:@"http://api.douban.com/v2/book/isbn/9787505715660" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSDictionary *bookInfo = (NSDictionary*)responseObject;
+        NSLog(@"bookInfo:%@",bookInfo);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"request faile:%@",error.description);
+    }];
+}
+
 
 @end

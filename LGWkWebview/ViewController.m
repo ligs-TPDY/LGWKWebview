@@ -10,8 +10,6 @@
 
 #import "ViewController2.h"
 
-
-
 @interface ViewController ()
 
 @end
@@ -21,16 +19,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = [UIColor redColor];
     
 }
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:YES];
-    
+
     ViewController2 *root = [[ViewController2 alloc]init];
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:root];
-    
+
     [self presentViewController:nav animated:YES completion:nil];
 }
 

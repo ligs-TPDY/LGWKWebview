@@ -10,6 +10,7 @@
 
 @interface RootWKWebViewViewController : UIViewController
 
-@property (nonatomic,strong) NSString *strAboutUrl;
+//加载的URL
+@property (nonatomic,strong) NSString *strForUrl;
 
 @end

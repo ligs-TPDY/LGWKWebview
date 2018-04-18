@@ -44,6 +44,7 @@
 		A62C27CD2085EF590037D100 /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A62C27BB2085EF590037D100 /* UIRefreshControl+AFNetworking.m */; };
 		A62C27CE2085EF590037D100 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A62C27BD2085EF590037D100 /* UIWebView+AFNetworking.m */; };
 		A62C27E32085F4270037D100 /* qwe.png in Resources */ = {isa = PBXBuildFile; fileRef = A62C27E22085F4270037D100 /* qwe.png */; };
+		A6B1A02820872A1200740AF5 /* LGYYCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B1A02720872A1200740AF5 /* LGYYCacheManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -116,6 +117,8 @@
 		A62C27BC2085EF590037D100 /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		A62C27BD2085EF590037D100 /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
 		A62C27E22085F4270037D100 /* qwe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qwe.png; sourceTree = "<group>"; };
+		A6B1A02620872A1200740AF5 /* LGYYCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGYYCacheManager.h; sourceTree = "<group>"; };
+		A6B1A02720872A1200740AF5 /* LGYYCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGYYCacheManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +185,8 @@
 				A62C27952085E67F0037D100 /* NSURLProtocol+WebKitSupport.m */,
 				A62C27792085DEF00037D100 /* YMWebCacheProtocol.h */,
 				A62C277A2085DEF00037D100 /* YMWebCacheProtocol.m */,
+				A6B1A02620872A1200740AF5 /* LGYYCacheManager.h */,
+				A6B1A02720872A1200740AF5 /* LGYYCacheManager.m */,
 				A62C277B2085DEF00037D100 /* YYCache.h */,
 				A62C277C2085DEF00037D100 /* YYCache.m */,
 				A62C277D2085DEF00037D100 /* YYDiskCache.h */,
@@ -338,6 +343,7 @@
 				A62C27C92085EF590037D100 /* UIAlertView+AFNetworking.m in Sources */,
 				A62C27CB2085EF590037D100 /* UIImageView+AFNetworking.m in Sources */,
 				A62C27CA2085EF590037D100 /* UIButton+AFNetworking.m in Sources */,
+				A6B1A02820872A1200740AF5 /* LGYYCacheManager.m in Sources */,
 				A62C27BE2085EF590037D100 /* AFHTTPRequestOperation.m in Sources */,
 				A62C27832085DEF00037D100 /* YMWebCacheProtocol.m in Sources */,
 				A62C27742085A07B0037D100 /* WKDelegateController.m in Sources */,

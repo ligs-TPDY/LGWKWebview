@@ -13,6 +13,8 @@
 
 #import "NSURLProtocol+WebKitSupport.h"
 
+#import "LGYYCacheManager.h"
+
 @interface NSURLRequest(MutableCopyWorkaround)
 
 - (id) mutableCopyWorkaround;
@@ -36,7 +38,7 @@
 @property (nonatomic, readwrite, strong) NSMutableData *data;
 @property (nonatomic, readwrite, strong) NSURLResponse *response;
 - (void)appendData:(NSData *)newData;
-@property (nonatomic, strong) YYCache *cache;
+@property (nonatomic, strong) LGYYCacheManager *ManagerCache;
 @end
 
 @implementation YMWebCacheProtocol
@@ -50,6 +52,13 @@
     [self changeCacheCountLimit:INT_MAX costLimit:1024 * 1024 * 20 ageLimit:DBL_MAX freeDiskSpaceLimit:60];
 }
 
++ (void)end{
+    [NSURLProtocol wk_unregisterScheme:@"http"];
+    [NSURLProtocol wk_unregisterScheme:@"https"];
+    [NSURLProtocol unregisterClass:self];
+}
+
+
 /**
  *  控制缓存内容大小
  *
@@ -62,11 +71,11 @@
                     costLimit:(NSInteger)costLimit
                      ageLimit:(NSTimeInterval)ageLimit
            freeDiskSpaceLimit:(NSInteger)freeDiskSpaceLimit {
-    YYCache *cache = [[YYCache alloc] initWithName:@"YYCacheDB"];
-    cache.diskCache.countLimit = countLimit;
-    cache.diskCache.costLimit = costLimit;
-    cache.diskCache.ageLimit = ageLimit;
-    cache.diskCache.freeDiskSpaceLimit = freeDiskSpaceLimit;
+    LGYYCacheManager *managerCache = [LGYYCacheManager sharedInstance];
+    managerCache.countLimit = countLimit;
+    managerCache.costLimit = costLimit;
+    managerCache.ageLimit = ageLimit;
+    managerCache.freeDiskSpaceLimit = freeDiskSpaceLimit;
 }
 
 //用来标记这次请求是否是我们拦截的如果是 则不进行处理
@@ -99,7 +108,7 @@ static NSString * kHostFlag = @"www.baidu.com";
     //        shouldAccept = ![[url host] isEqualToString:kHostFlag];
     //    }
     
-    NSLog(@"%@",request.URL.description);
+//    NSLog(@"%@",request.URL.description);
     
     return shouldAccept;
 }
@@ -112,14 +121,15 @@ static NSString * kHostFlag = @"www.baidu.com";
 
 - (void)startLoading
 {
-    self.cache = [[YYCache alloc] initWithName:@"YYCacheDB"];
+    self.ManagerCache = [LGYYCacheManager sharedInstance];
+    self.ManagerCache.cache = [[YYCache alloc] initWithName:@"YYCacheWebView"];
 //        [self.cache removeAllObjects];
     
     //将URL转换成名字
     cacheKey = [NSString stringWithFormat:@"%lx", [[[self.request URL] absoluteString] hash]];
     //如果存在缓存则不请求网络
-    if ([self.cache.diskCache containsObjectForKey:cacheKey]) {
-        YMCachedData *cacheData = (YMCachedData *)[self.cache.diskCache objectForKey:cacheKey];
+    if ([self.ManagerCache.cache.diskCache containsObjectForKey:cacheKey]) {
+        YMCachedData *cacheData = (YMCachedData *)[self.ManagerCache.cache.diskCache objectForKey:cacheKey];
         if (cacheData) {
             NSData *data = [cacheData data];
             NSURLResponse *response = [cacheData response];
@@ -162,7 +172,7 @@ static NSString * kHostFlag = @"www.baidu.com";
         [cacheDate setResponse:response];
         [cacheDate setData:[self data]];
         [cacheDate setRedirectRequest:redirectableRequest];
-        [self.cache.diskCache setObject:cacheDate forKey:cacheKey];
+        [self.ManagerCache.cache.diskCache setObject:cacheDate forKey:cacheKey];
         
         [[self client] URLProtocol:self wasRedirectedToRequest:redirectableRequest redirectResponse:response];
         return redirectableRequest;
@@ -198,7 +208,7 @@ static NSString * kHostFlag = @"www.baidu.com";
     YMCachedData *cacheDate = [[YMCachedData alloc] init];
     [cacheDate setResponse:[self response]];
     [cacheDate setData:[self data]];
-    [self.cache.diskCache setObject:cacheDate forKey:cacheKey];
+    [self.ManagerCache.cache.diskCache setObject:cacheDate forKey:cacheKey];
     
     [self setConnection:nil];
     [self setData:nil];
