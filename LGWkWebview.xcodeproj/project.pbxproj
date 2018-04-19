@@ -45,6 +45,7 @@
 		A62C27CE2085EF590037D100 /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = A62C27BD2085EF590037D100 /* UIWebView+AFNetworking.m */; };
 		A62C27E32085F4270037D100 /* qwe.png in Resources */ = {isa = PBXBuildFile; fileRef = A62C27E22085F4270037D100 /* qwe.png */; };
 		A6B1A02820872A1200740AF5 /* LGYYCacheManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B1A02720872A1200740AF5 /* LGYYCacheManager.m */; };
+		A6B1A02B20881DDC00740AF5 /* LGWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = A6B1A02A20881DDC00740AF5 /* LGWebView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +120,8 @@
 		A62C27E22085F4270037D100 /* qwe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qwe.png; sourceTree = "<group>"; };
 		A6B1A02620872A1200740AF5 /* LGYYCacheManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LGYYCacheManager.h; sourceTree = "<group>"; };
 		A6B1A02720872A1200740AF5 /* LGYYCacheManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LGYYCacheManager.m; sourceTree = "<group>"; };
+		A6B1A02920881DDC00740AF5 /* LGWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LGWebView.h; sourceTree = "<group>"; };
+		A6B1A02A20881DDC00740AF5 /* LGWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LGWebView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +167,8 @@
 				A62C275D2085A05A0037D100 /* ViewController.m */,
 				A62C27752085C04E0037D100 /* ViewController2.h */,
 				A62C27762085C04E0037D100 /* ViewController2.m */,
+				A6B1A02920881DDC00740AF5 /* LGWebView.h */,
+				A6B1A02A20881DDC00740AF5 /* LGWebView.m */,
 				A62C27702085A07B0037D100 /* RootWKWebViewViewController.h */,
 				A62C276F2085A07B0037D100 /* RootWKWebViewViewController.m */,
 				A62C27722085A07B0037D100 /* WKDelegateController.h */,
@@ -360,6 +365,7 @@
 				A62C275E2085A05A0037D100 /* ViewController.m in Sources */,
 				A62C27C42085EF590037D100 /* AFURLRequestSerialization.m in Sources */,
 				A62C27692085A05B0037D100 /* main.m in Sources */,
+				A6B1A02B20881DDC00740AF5 /* LGWebView.m in Sources */,
 				A62C27C52085EF590037D100 /* AFURLResponseSerialization.m in Sources */,
 				A62C27872085DEF00037D100 /* YYMemoryCache.m in Sources */,
 				A62C27C82085EF590037D100 /* UIActivityIndicatorView+AFNetworking.m in Sources */,

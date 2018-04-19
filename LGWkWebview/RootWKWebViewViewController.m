@@ -72,7 +72,14 @@
     delegateController.delegate = self;
     [_userContentController addScriptMessageHandler:delegateController  name:@"sayhello"];
 }
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:YES];
+    
+    [_wkwebview reloadFromOrigin];
+}
 - (void)dealloc{
+    
     //取消去进度的监听
     [_wkwebview removeObserver:self forKeyPath:@"estimatedProgress"];
     
@@ -103,6 +110,9 @@
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
     NSLog(@"在发送请求之前，决定是否跳转");
     NSLog(@"当前请求的URL = %@",navigationAction.request.URL.absoluteString);
+    NSLog(@"webView.backForwardList.backList = %@",webView.backForwardList.backList);
+    
+    
     //允许跳转
     decisionHandler(WKNavigationActionPolicyAllow);
     //不允许跳转

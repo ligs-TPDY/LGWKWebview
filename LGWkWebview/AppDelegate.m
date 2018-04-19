@@ -21,6 +21,7 @@
     // Override point for customization after application launch.
     
     LGWebView *webview = [LGWebView sharedInstance];
+    
     NSLog(@"%@",webview);
     
     return YES;
