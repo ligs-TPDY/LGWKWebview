@@ -11,6 +11,8 @@
 @interface RootWKWebViewViewController : UIViewController
 
 //加载的URL
-@property (nonatomic,strong) NSString *strForUrl;
+@property (nonatomic,strong) NSString *requsetURL;
+
+- (void)goNext;
 
 @end

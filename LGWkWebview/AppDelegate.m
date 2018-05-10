@@ -22,8 +22,6 @@
     
     LGWebView *webview = [LGWebView sharedInstance];
     
-    NSLog(@"%@",webview);
-    
     return YES;
 }
 

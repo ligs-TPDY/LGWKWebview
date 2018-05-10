@@ -8,7 +8,7 @@
 
 #import "ViewController2.h"
 
-#import "RootWKWebViewViewController.h"
+#import "NewUserActivityViewController.h"
 
 #import "YMWebCacheProtocol.h"
 
@@ -48,8 +48,8 @@
     if (button.tag == 0) {
         [self testAFN_NSURLProtocol];
     }else{
-        RootWKWebViewViewController *webview = [[RootWKWebViewViewController alloc]init];
-        webview.strForUrl = button.titleLabel.text;
+        NewUserActivityViewController *webview = [[NewUserActivityViewController alloc]init];
+        webview.requsetURL = @"http://183.62.121.155/mobile/activitys/#/newWelfare?userID=60";
         [self.navigationController pushViewController:webview animated:YES];
     }
 }
@@ -59,6 +59,7 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:@"http://api.douban.com/v2/book/isbn/9787505715660" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         NSDictionary *bookInfo = (NSDictionary*)responseObject;
+        
         NSLog(@"bookInfo:%@",bookInfo);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
