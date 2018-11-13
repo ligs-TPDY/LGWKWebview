@@ -45,7 +45,7 @@
     [super viewDidLoad];
     
     //注册，设置缓存配置
-//    [YMWebCacheProtocol start];
+    [YMWebCacheProtocol start];
     
     //初始化导航栏
     [self layoutUIWithBarButtonItem];
@@ -116,7 +116,7 @@
     [self.webView removeObserver:self forKeyPath:@"estimatedProgress"];
     [self.webView removeObserver:self forKeyPath:@"title"];
     
-//    [YMWebCacheProtocol end];
+    [YMWebCacheProtocol end];
 }
 #pragma mark ----进度相关----
 - (void)setProgressing:(NSInteger)progressing
